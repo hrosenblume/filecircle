@@ -3,6 +3,10 @@
   "description": "Peer to Peer File Sharing with Node and Socket.io",
   "author": "Fileroom@MHacksIV",
   "version": "0.1.0",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
   "dependencies": {
     "socket.io": "0.8.x",
     "express": "2.5.x",
