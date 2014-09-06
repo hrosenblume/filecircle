@@ -7,11 +7,14 @@
     "type": "git",
     "url": ""
   },
+  "scripts": {
+    "start": "node server.js"
+  },
   "dependencies": {
     "socket.io": "0.8.x",
     "express": "2.5.x",
     "config": "0.4.9",
     "jqtpl": "1.0.7"
   },
-  "engine": "node >= 0.4.1"
+  // "engine": "node >= 0.4.1"
 }
