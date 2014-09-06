@@ -12,8 +12,8 @@
   },
   "dependencies": {
     "socket.io": "0.8.x",
-    "express": "2.5.x",
+    "express": "^4.4.4",
     "config": "0.4.9",
-    "jqtpl": "1.0.7"
+    "consolidate": "0.10.0"
   }
 }

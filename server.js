@@ -1,26 +1,34 @@
 // Requirements
-
-var app = require('express').createServer()
-  , express = require('express')
-  , io = require('socket.io').listen(app)
-  , jqtpl = require("jqtpl");
-
+var express = require('express');
+var jqtpl = require('jqtpl');
+var engines = require('consolidate');
 
 // Load the config file
 var config = require('config').Server;
+
+/**
+ * Create Express server.
+ */
+var app = express();
+
+// Setup socket
+var io = require('socket.io').listen(app);
 io.set('log level', 1);
 
- // App Stuff
+/**
+ * Express configuration.
+ */
+app.set('port', process.env.PORT || 3000);
 app.use('/public', express.static(__dirname + '/public'));
-app.listen(config.port);
-app.set("view engine", "html");
-app.set("view options", {layout: false});
-app.register(".html", require("jqtpl").express);
+app.set('view engine', 'html');
+app.set('view options', {layout: false});
+app.engine('html', engines.jqtpl);
 
+
+// Other app stuff
 app.get('/', function (req, res) {
   res.redirect('/' + randomString());
 });
-
 app.get('/:hash', function (req, res) {
   res.render (__dirname + '/index', {domain: config.siteDomain});
 });
@@ -94,7 +102,6 @@ io.sockets.on('connection', function (socket) {
 
 });
 
-
 // Utilities
 function randomString() {
 	var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghijklmnopqrstuvwxyz";
@@ -106,3 +113,12 @@ function randomString() {
 	}
 	return randomstring;
 }
+
+/**
+ * Start Express server.
+ */
+app.listen(app.get('port'), function() {
+  console.log('Express server listening on port %d in %s mode', app.get('port'), app.get('env'));
+});
+
+module.exports = app;
