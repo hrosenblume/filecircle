@@ -1,6 +1,5 @@
 // Requirements
 var express = require('express');
-var jqtpl = require('jqtpl');
 var engines = require('consolidate');
 var errorHandler = require('errorhandler');
 
