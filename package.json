@@ -11,7 +11,7 @@
     "start": "node server.js"
   },
   "dependencies": {
-    "socket.io": "0.8.x",
+    "socket.io": "1.1.x",
     "express": "^4.4.4",
     "config": "0.4.9",
     "consolidate": "0.10.0",
