@@ -11,9 +11,7 @@
         <link href='http://fonts.googleapis.com/css?family=Monsieur+La+Doulaise' rel='stylesheet' type='text/css'>
         <script type="text/javascript"
                 src="http://code.jquery.com/jquery-1.5.2.js"></script>
-
-		<script src="/socket.io/socket.io.js"></script>
-		<script src="/public/socket.io.js"></script>
+        <script src="https://cdn.socket.io/socket.io-1.1.0.js"></script>
 		<script type="text/javascript" src="/public/jquery.url.js"></script>
     </head>
     <body>
@@ -104,6 +102,7 @@
 		var fid = 0;
 		var files = {};
 		var downfiles = {};
+		//var socket = io.connect('http://${domain}');
 		var socket = io.connect('http://${domain}');
 		//read the requested bytes
 		var reader;

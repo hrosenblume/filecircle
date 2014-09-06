@@ -11,10 +11,14 @@ var config = require('config').Server;
  */
 var app = express();
 
-// Setup socket
-var io = require('socket.io').listen(app);
-io.set('log level', 1);
-
+//io is now sio
+var http = require('http').Server(app);
+var sio = require('socket.io')(http);
+//io.set('log level', 1);
+sio.use(function(socket,next) {
+	1;
+	next();
+});
 /**
  * Express configuration.
  */
@@ -34,11 +38,11 @@ app.get('/:hash', function (req, res) {
 });
 
 // P2P Stuff
-io.sockets.on('connection', function (socket) {
+sio.sockets.on('connection', function (socket) {
 
 	socket.on('joiner', function (data) {
 
-		len = io.sockets.clients(data).length;
+		len = sio.sockets.clients(data).length;
 
 		if(len == undefined || len == 0){
 			socket.emit('host');
@@ -53,8 +57,8 @@ io.sockets.on('connection', function (socket) {
 			socket.isHost = false;
 			socket.isPeer = true;
 			socket.room = data;
-			socket.hoster = io.sockets.clients(data)[0];
-			io.sockets.clients(data)[0].peer = socket;
+			socket.hoster = sio.sockets.clients(data)[0];
+			sio.sockets.clients(data)[0].peer = socket;
 			if(socket.hoster.fileslist != undefined){
 				socket.emit('fileslist', socket.hoster.fileslist);
 			}
