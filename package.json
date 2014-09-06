@@ -15,6 +15,7 @@
     "express": "^4.4.4",
     "config": "0.4.9",
     "consolidate": "0.10.0",
-    "errorhandler": "^1.1.1"
+    "errorhandler": "^1.1.1",
+    "jqtpl": "1.0.7"
   }
 }
