@@ -10,10 +10,10 @@ var config = require('config').Server;
  * Create Express server.
  */
 var app = express();
+var server = require('http').createServer(app);
 
 // Setup socket
-var io = require('socket.io').listen(app);
-io.set('log level', 1);
+var io = require('socket.io')(server);
 
 /**
  * Express configuration.
@@ -23,7 +23,6 @@ app.use('/public', express.static(__dirname + '/public'));
 app.set('view engine', 'html');
 app.set('view options', {layout: false});
 app.engine('html', engines.jqtpl);
-
 
 // Other app stuff
 app.get('/', function (req, res) {
