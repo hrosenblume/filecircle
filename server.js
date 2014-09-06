@@ -2,6 +2,7 @@
 var express = require('express');
 var jqtpl = require('jqtpl');
 var engines = require('consolidate');
+var errorHandler = require('errorhandler');
 
 // Load the config file
 var config = require('config').Server;
@@ -113,6 +114,12 @@ function randomString() {
 	}
 	return randomstring;
 }
+
+/**
+ * 500 Error Handler.
+ */
+
+app.use(errorHandler());
 
 /**
  * Start Express server.
